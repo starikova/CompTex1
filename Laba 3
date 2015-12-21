@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+
+<style type="text/css">
+    table {
+        border-collapse: collapse;
+    }
+    table th,
+    table td {
+        padding: 0 5px;
+        border: 1px solid #000;
+        text-align: center;
+		color: #000080;
+		background-color:yellow;
+    }
+</style>
+</head>
+
+<div id = 'pole'>	
+
+<script>
+var rows=10;
+var columns=10;
+var sssr="";
+
+function getrandom(min,max)
+{
+var m=min+Math.round((max-min)*Math.random());
+return m;
+}
+
+sssr=sssr+'<table Id="Table">\n';
+for (var i=0; i<rows; i++)
+{
+sssr=sssr+'<tr height="20">\n';
+for (var j=0; j<columns; j++)
+{
+sssr=sssr+'<td width="20">'+getrandom(0,100)+'</td>';}
+sssr=sssr+'</tr>\n';}
+sssr=sssr+'</table>';
+
+document.getElementById("pole").innerHTML=sssr;
+
+function search()
+{
+var table=document.getElementById("Table");
+for (var i=0; i<table.rows.length; i++) 
+{
+for (var j=0; j<table.rows[0].cells.length; j++) 
+{
+var TD=table.rows[i].cells[j];
+if (TD.innerHTML % 2>0 )  //a % b — это остаток от деления a на b.
+{
+TD.style.backgroundColor="lightgreen";
+}
+}
+}
+}
+</script>
+
+</br>
+<input type="button" value="Поиск нечетных чисел" class="buttonbox"
+ onClick="search()" style="left:8px; 
+       width:270px; top:80px;" >
+
+</html>
