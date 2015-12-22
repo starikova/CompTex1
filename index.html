@@ -1,67 +1,60 @@
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<style>
+.td {
+width: 270px;
+height: 60px;
+font-size: 36px;
+text-align: center;
+position: absolute;
+}
+#area {
+position: relative;
+height: 310px;
+background-color: blue;
+}
 
-<style type="text/css">
-    table {
-        border-collapse: collapse;
-    }
-    table th,
-    table td {
-        padding: 0 5px;
-        border: 1px solid #000;
-        text-align: center;
-		color: #000080;
-		background-color:yellow;
-    }
+#answer {
+font-size: 36px;
+color: red;
+}
+
+
 </style>
 </head>
 
-<div id = 'pole'>	
+<body>
+<div id="area">
+
+<input type="text" placeholder="ведите массу" class="td" id="td11" style="top:10px; left:20px;">
+<span style="position: absolute; top:20px; left:95px;" ></span>
+<input type="text" placeholder="введите высоту" class="td"  id="td12"style="top:80px; left:20px;">
+<span style="position: absolute; top:90px; left:95px;" ></span>
+
+
+<input type="button" 
+          value="Вычислить" onclick="A()" style="position: absolute; top:245px; left:20px; width: 120px; height: 30px;">
+<span style="position: absolute; top:240px; left:170px; " id = "answer"> Ответ </span>	
+
+</div>
+<div>
+</div>
+</body>
+</html>
 
 <script>
-var rows=10;
-var columns=10;
-var sssr="";
+function A() {
+var a11, a12, opr;
+a11 = parseInt( document.getElementById("td11").value );
+a12 = parseInt( document.getElementById("td12").value );
 
-function getrandom(min,max)
-{
-var m=min+Math.round((max-min)*Math.random());
-return m;
+
+opr = a11 * 9.81 * a12;
+document.getElementById("answer").innerHTML = 
+String( opr );
+
+
 }
 
-sssr=sssr+'<table Id="Table">\n';
-for (var i=0; i<rows; i++)
-{
-sssr=sssr+'<tr height="20">\n';
-for (var j=0; j<columns; j++)
-{
-sssr=sssr+'<td width="20">'+getrandom(0,100)+'</td>';}
-sssr=sssr+'</tr>\n';}
-sssr=sssr+'</table>';
-
-document.getElementById("pole").innerHTML=sssr;
-
-function search()
-{
-var table=document.getElementById("Table");
-for (var i=0; i<table.rows.length; i++) 
-{
-for (var j=0; j<table.rows[0].cells.length; j++) 
-{
-var TD=table.rows[i].cells[j];
-if (TD.innerHTML % 2>0 )  //a % b — это остаток от деления a на b.
-{
-TD.style.backgroundColor="lightgreen";
-}
-}
-}
-}
 </script>
-
-</br>
-<input type="button" value="Поиск нечетных чисел" class="buttonbox"
- onClick="search()" style="left:8px; 
-       width:270px; top:80px;" >
-
-</html>
